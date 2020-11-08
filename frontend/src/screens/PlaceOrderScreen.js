@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { Link } from "react-router-dom";
+import { createOrder } from '../actions/orderActions'
 
 const PlaceOrderScreen = () => {
+  const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart);
 
   //Calculate prices
@@ -26,7 +28,15 @@ const PlaceOrderScreen = () => {
   ).toFixed(2);
 
   const placeOrderHandler = () => {
-    console.log("order");
+    dispatch(createOrder({
+      orderItems: cart.cartItems,
+      shippingAddress: cart.shippingAddress,
+      paymentMethod: cart.paymentMethod,
+      itemsPrice: cart.itemsPrice,
+      shippingPrice: cart.shippingPrice,
+      taxPrice: cart.taxPrice,
+      totalPrice: cart.totalPrice,
+    }))
   };
 
   return (
