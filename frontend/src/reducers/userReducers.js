@@ -1,6 +1,8 @@
+import { ORDER_LIST_MY_RESET } from '../constants/orderConstans'
 import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
+  USER_DETAILS_RESET,
   USER_DETAILS_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
@@ -37,6 +39,8 @@ export const userRegisterReducer = (state = {}, action) => {
       return { loading: false, userInfo: action.payload }
     case USER_REGISTER_FAIL:
       return { loading: false, error: action.payload }
+    case USER_DETAILS_RESET:
+      return { user: {} }
     default:
       return state
   }
@@ -50,6 +54,8 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return { loading: false, user: action.payload }
     case USER_DETAILS_FAIL:
       return { loading: false, error: action.payload }
+      case USER_DETAILS_RESET:
+        return { user: {} }
     default:
       return state
   }
@@ -63,6 +69,8 @@ export const userUpdateProfileReducer = (state = {}, action) => {
       return { loading: false, success: true, userInfo: action.payload }
     case USER_UPDATE_PROFILE_FAIL:
       return { loading: false, error: action.payload }
+      case ORDER_LIST_MY_RESET:
+        return { orders: [] }
     default:
       return state
   }
